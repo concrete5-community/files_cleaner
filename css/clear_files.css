@@ -1,0 +1,45 @@
+#clearfiles_providers td.ico {
+	width:36px;
+	text-align:center;
+}
+#clearfiles_providers td.state {
+	text-align:right;
+}
+#clearfiles_providers td.action {
+	width:36px;
+	text-align:center;
+}
+
+#clearfiles_providers .ico-refresh,
+	#clearfiles_providers .ico-busy,
+	#clearfiles_providers .ico-delete {
+	height:16px;
+	width:16px;
+}
+#clearfiles_providers .ico-refresh {
+	display: block;
+	background:url("../images/refresh.png") no-repeat transparent;
+}
+#clearfiles_providers .ico-busy {
+	display:none;
+	background:url("../images/throbber_white_16.gif") no-repeat transparent;
+}
+#clearfiles_providers .ico-delete {
+	display: block;
+	background:url("../images/trash.png") no-repeat transparent;
+}
+#clearfiles_providers .text-busy {
+	display:none;
+	font-style:italic;
+}
+
+#clearfiles_providers tr.working .ico-refresh,
+	#clearfiles_providers tr.working .ico-delete {
+	display:none;
+}
+#clearfiles_providers tr.working .ico-busy {
+	display:block;
+}
+#clearfiles_providers tr.working .text-busy {
+	display:inline;
+}
