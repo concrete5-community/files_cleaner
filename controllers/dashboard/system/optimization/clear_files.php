@@ -26,7 +26,7 @@ class DashboardSystemOptimizationClearFilesController extends DashboardBaseContr
 			$content = $providers[$handle]->getContent(false);
 			@ob_end_clean();
 			header('Content-Type: text/javascript; charset=utf-8');
-			die(json_encode($content));
+			die(Loader::helper('json')->encode($content));
 		} catch(Exception $x) {
 			@ob_end_clean();
 			header('HTTP/1.1 400 Bad Request', true, 400);
@@ -49,7 +49,7 @@ class DashboardSystemOptimizationClearFilesController extends DashboardBaseContr
 			$content = $providers[$handle]->cleanContent();
 			@ob_end_clean();
 			header('Content-Type: text/javascript; charset=utf-8');
-			die(json_encode(true));
+			die(Loader::helper('json')->encode(true));
 		} catch(Exception $x) {
 			@ob_end_clean();
 			header('HTTP/1.1 400 Bad Request', true, 400);

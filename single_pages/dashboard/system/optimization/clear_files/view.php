@@ -1,5 +1,6 @@
 <?php defined('C5_EXECUTE') or die('Access denied.');
 $html = Loader::helper('html');
+$json = Loader::helper('json');
 $this->addHeaderItem($html->css('clear_files.css', 'files_cleaner'));
 ?>
 <script type="text/javascript"><!--
@@ -13,7 +14,7 @@ function ClearFilesProvider(handle, name, noteIndex) {
 	this.row
 		.append($('<td class="ico"></td>')
 			.append($('<a class="ico-refresh" href="#" onclick="$(this).data(\'provider\').Refresh(); return false;"></a>')
-				.attr("title", <?php echo json_encode(t('Refresh')); ?>)
+				.attr("title", <?php echo $json->encode(t('Refresh')); ?>)
 				.data("provider", this)
 			)
 			.append('<span class="ico-busy"></span>')
@@ -23,13 +24,13 @@ function ClearFilesProvider(handle, name, noteIndex) {
 		)
 		.append($('<td class="state"></td>')
 			.append($('<span class="text-busy"></span>')
-				.text(<?php echo json_encode(t('Please wait')); ?>)
+				.text(<?php echo $json->encode(t('Please wait')); ?>)
 			)
 			.append(this.stateLay = $('<span></span>'))
 		)
 		.append($('<td class="action"></td>')
 			.append($('<a class="ico-delete" href="#" onclick="$(this).data(\'provider\').Delete(); return false;"></a>')
-				.attr("title", <?php echo json_encode(t('Delete files/directories')); ?>)
+				.attr("title", <?php echo $json->encode(t('Delete files/directories')); ?>)
 				.data("provider", this)
 			)
 			.append('<span class="ico-busy"></span>')
@@ -58,7 +59,7 @@ ClearFilesProvider.prototype = {
 		this.stateLay.empty().css("color", "");
 		this.setBusy(true);
 		$.ajax({
-			url: <?php echo json_encode($this->action('get_content')); ?>,
+			url: <?php echo $json->encode($this->action('get_content')); ?>,
 			async: true,
 			cache: false,
 			type: "POST",
@@ -67,7 +68,7 @@ ClearFilesProvider.prototype = {
 			success: function(r) {
 				var o;
 				if(r == null) {
-					r = <?php echo json_encode(t('Empty result!')); ?>;
+					r = <?php echo $json->encode(t('Empty result!')); ?>;
 				}
 				if(typeof(r) == "string") {
 					me.stateLay.text(r).css("color", "red");
@@ -81,7 +82,7 @@ ClearFilesProvider.prototype = {
 					} else {
 						o = $('<span></span>');
 					}
-					o.text(<?php echo json_encode(htmlspecialchars(t('Directories: '))); ?> + r.dirs.length);
+					o.text(<?php echo $json->encode(htmlspecialchars(t('Directories: '))); ?> + r.dirs.length);
 					me.stateLay.append(o);
 					me.stateLay.append(', ');
 					if(r.files.length) {
@@ -91,7 +92,7 @@ ClearFilesProvider.prototype = {
 					} else {
 						o = $('<span></span>');
 					}
-					o.text(<?php echo json_encode(htmlspecialchars(t('Files: '))); ?> + r.files.length);
+					o.text(<?php echo $json->encode(htmlspecialchars(t('Files: '))); ?> + r.files.length);
 					me.stateLay.append(o);
 				}
 			},
@@ -127,7 +128,7 @@ ClearFilesProvider.prototype = {
 		});
 		$(document.body).append($lay);
 		$lay.dialog({
-			title: {"dirs": <?php echo json_encode(t('Directories')); ?>, "files": <?php echo json_encode(t('Files')); ?>}[what],
+			title: {"dirs": <?php echo $json->encode(t('Directories')); ?>, "files": <?php echo $json->encode(t('Files')); ?>}[what],
 			modal: true,
 			width: 500,
 			close: function()
@@ -137,7 +138,7 @@ ClearFilesProvider.prototype = {
 		});
 	},
 	Delete: function() {
-		if(!confirm(<?php echo json_encode(t('Are you sure you want to proceed?')); ?>)) {
+		if(!confirm(<?php echo $json->encode(t('Are you sure you want to proceed?')); ?>)) {
 			return;
 		}
 		var me, result = "?";
@@ -145,7 +146,7 @@ ClearFilesProvider.prototype = {
 		this.stateLay.empty().css("color", "");
 		this.setBusy(true);
 		$.ajax({
-			url: <?php echo json_encode($this->action('do_clean')); ?>,
+			url: <?php echo $json->encode($this->action('do_clean')); ?>,
 			async: true,
 			cache: false,
 			type: "POST",
@@ -153,7 +154,7 @@ ClearFilesProvider.prototype = {
 			data: {provider: this.handle},
 			success: function(r) {
 				var o;
-				result = (r == null) ? <?php echo json_encode(t('Empty result!')); ?> : r;
+				result = (r == null) ? <?php echo $json->encode(t('Empty result!')); ?> : r;
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				if((errorThrown == "Bad Request") || (textStatus == "parsererror")) {
@@ -232,7 +233,7 @@ var ClearFiles = {
 };
 $(document).ready(function()
 {
-	var providers = <?php echo json_encode($providers); ?>, notesMark, notes = [], noteIndex;
+	var providers = <?php echo $json->encode($providers); ?>, notesMark, notes = [], noteIndex;
 	ClearFiles.Providers = [];
 	notesMark = "";
 	$.each(providers, function() {
