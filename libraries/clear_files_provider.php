@@ -144,14 +144,8 @@ class ClearFilesProvider {
 	* @throws Exception Throws an Exception in case of errors.
 	*/
 	protected static function DeleteDirectory($fullPath) {
-		$content = self::getDirContent($fullPath, true);
-		foreach($content['dirs'] as $dir) {
-			self::DeleteDirectory($dir);
-		}
-		foreach($content['files'] as $file) {
-			self::DeleteFile($file);
-		}
-		if(!@rmdir($fullPath)) {
+		Loader::helper('file')->removeAll($fullPath);
+		if(!is_dir($fullPath)) {
 			throw new Exception(sprintf(t('Error deleting folder %s'), $fullPath));
 		}
 	}
