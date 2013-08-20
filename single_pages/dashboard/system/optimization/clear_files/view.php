@@ -82,7 +82,7 @@ ClearFilesProvider.prototype = {
 					} else {
 						o = $('<span></span>');
 					}
-					o.text(<?php echo $json->encode(htmlspecialchars(t('Directories: '))); ?> + r.dirs.length);
+					o.text(<?php echo $json->encode(t('Directories: ')); ?> + r.dirs.length);
 					me.stateLay.append(o);
 					me.stateLay.append(', ');
 					if(r.files.length) {
@@ -92,7 +92,7 @@ ClearFilesProvider.prototype = {
 					} else {
 						o = $('<span></span>');
 					}
-					o.text(<?php echo $json->encode(htmlspecialchars(t('Files: '))); ?> + r.files.length);
+					o.text(<?php echo $json->encode(t('Files: ')); ?> + r.files.length);
 					me.stateLay.append(o);
 				}
 			},
