@@ -5,7 +5,7 @@ class FilesCleanerPackage extends Package {
 	/** Minimum version of concrete5.
 	* @var string
 	*/
-	protected $appVersionRequired = '5.5';
+	protected $appVersionRequired = '5.6.1';
 
 	/** The package handle.
 	* @var string
