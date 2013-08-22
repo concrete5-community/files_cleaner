@@ -145,7 +145,7 @@ class ClearFilesProvider {
 	*/
 	protected static function DeleteDirectory($fullPath) {
 		Loader::helper('file')->removeAll($fullPath);
-		if(!is_dir($fullPath)) {
+		if(is_dir($fullPath)) {
 			throw new Exception(sprintf(t('Error deleting folder %s'), $fullPath));
 		}
 	}
