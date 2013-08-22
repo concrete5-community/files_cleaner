@@ -28,7 +28,7 @@ class OldFilesClearFilesProvider extends ClearFilesProvider {
 	protected function getProviderContent($absolutePaths) {
 		$now = time();
 		$limit = $now - $this->getAgeLimit();
-		$result = array('files' => array(), 'dirs' => array());;
+		$result = array('files' => array(), 'dirs' => array());
 		$parentFolder = rtrim($this->getAbsFolder(), '/\\') . '/';
 		$content = self::getDirContent($parentFolder);
 		foreach($content['dirs'] as $dir) {
