@@ -15,7 +15,7 @@ class FilesCleanerPackage extends Package {
 	/** The package version.
 	* @var string
 	*/
-	protected $pkgVersion = '0.9.2';
+	protected $pkgVersion = '0.9.3';
 
 	/** Retrieves the package name.
 	* @return string
