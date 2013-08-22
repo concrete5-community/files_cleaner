@@ -33,7 +33,7 @@ class ClearFilesProvider {
 	* @abstract
 	*/
 	public function getName() {
-		throw new Exception(sprintf(t('Method \'%1$s\' not implemented in class \'%2$s\''), __FUNCTION__, get_class($this)));
+		throw new Exception(t('Method \'%1$s\' not implemented in class \'%2$s\'', __FUNCTION__, get_class($this)));
 	}
 	
 	/** Get some extra info.
@@ -55,7 +55,7 @@ class ClearFilesProvider {
 	* @abstract
 	*/
 	protected function getProviderContent($absolutePaths) {
-		throw new Exception(sprintf(t('Method \'%1$s\' not implemented in class \'%2$s\''), __FUNCTION__, get_class($this)));
+		throw new Exception(t('Method \'%1$s\' not implemented in class \'%2$s\'', __FUNCTION__, get_class($this)));
 	}
 	
 	/** Get the deletable content, as array of directories and files.
@@ -96,7 +96,7 @@ class ClearFilesProvider {
 	protected static function getDirContent($dir, $buildFullPath = false, $justType = '') {
 		$result = empty($justType) ? array('files' => array(), 'dirs' => array()) : array();
 		if(!($hDir = @opendir($dir))) {
-			throw new Exception(sprintf(t('Unable to open folder %s'), $dir));
+			throw new Exception(t('Unable to open folder %s', $dir));
 		}
 		while(($entry = @readdir($hDir)) !== false) {
 			switch($entry) {
@@ -146,7 +146,7 @@ class ClearFilesProvider {
 	protected static function DeleteDirectory($fullPath) {
 		Loader::helper('file')->removeAll($fullPath);
 		if(is_dir($fullPath)) {
-			throw new Exception(sprintf(t('Error deleting folder %s'), $fullPath));
+			throw new Exception(t('Error deleting folder %s', $fullPath));
 		}
 	}
 
@@ -156,7 +156,7 @@ class ClearFilesProvider {
 	*/
 	protected static function DeleteFile($fullPath) {
 		if(!@unlink($fullPath)) {
-			throw new Exception(sprintf(t('Error deleting file %s'), $fullPath));
+			throw new Exception(t('Error deleting file %s', $fullPath));
 		}
 	}
 

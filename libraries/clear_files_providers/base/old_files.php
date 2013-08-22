@@ -6,7 +6,7 @@
 class OldFilesClearFilesProvider extends ClearFilesProvider {
 
 	public function getNote() {
-		return sprintf(t('We consider as "old" the files (created or modified) older than %s.'), self::FormatAge($this->getAgeLimit()));
+		return t('We consider as "old" the files (created or modified) older than %s.', self::FormatAge($this->getAgeLimit()));
 	}
 
 	/** Retrieves the minimum age (in seconds) of deletable files.
@@ -14,7 +14,7 @@ class OldFilesClearFilesProvider extends ClearFilesProvider {
 	 * @abstract
 	 */
 	protected function getAgeLimit() {
-		throw new Exception(sprintf(t('Method \'%1$s\' not implemented in class \'%2$s\''), __FUNCTION__, get_class($this)));
+		throw new Exception(t('Method \'%1$s\' not implemented in class \'%2$s\'', __FUNCTION__, get_class($this)));
 	}
 
 	/** Retrieves the folder containing old files/folders to be deleted.
@@ -22,7 +22,7 @@ class OldFilesClearFilesProvider extends ClearFilesProvider {
 	* @abstract
 	*/
 	protected function getAbsFolder() {
-		throw new Exception(sprintf(t('Method \'%1$s\' not implemented in class \'%2$s\''), __FUNCTION__, get_class($this)));
+		throw new Exception(t('Method \'%1$s\' not implemented in class \'%2$s\'', __FUNCTION__, get_class($this)));
 	}
 
 	protected function getProviderContent($absolutePaths) {

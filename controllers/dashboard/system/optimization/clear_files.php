@@ -16,12 +16,12 @@ class DashboardSystemOptimizationClearFilesController extends DashboardBaseContr
 		try {
 			$handle = $this->post('provider');
 			if(!strlen($handle)) {
-				throw new Exception(sprintf(t('Invalid parameter: %s'), 'clearable'));
+				throw new Exception(t('Invalid parameter: %s', 'clearable'));
 			}
 			Loader::library('clear_files_provider', 'files_cleaner');
 			$providers = ClearFilesProvider::getProviders();
 			if(!array_key_exists($handle, $providers)) {
-				throw new Exception(sprintf(t('Invalid parameter: %s'), 'clearable'));
+				throw new Exception(t('Invalid parameter: %s', 'clearable'));
 			}
 			$content = $providers[$handle]->getContent(false);
 			@ob_end_clean();
@@ -39,12 +39,12 @@ class DashboardSystemOptimizationClearFilesController extends DashboardBaseContr
 		try {
 			$handle = $this->post('provider');
 			if(!strlen($handle)) {
-				throw new Exception(sprintf(t('Invalid parameter: %s'), 'clearable'));
+				throw new Exception(t('Invalid parameter: %s', 'clearable'));
 			}
 			Loader::library('clear_files_provider', 'files_cleaner');
 			$providers = ClearFilesProvider::getProviders();
 			if(!array_key_exists($handle, $providers)) {
-				throw new Exception(sprintf(t('Invalid parameter: %s'), 'clearable'));
+				throw new Exception(t('Invalid parameter: %s', 'clearable'));
 			}
 			$content = $providers[$handle]->cleanContent();
 			@ob_end_clean();

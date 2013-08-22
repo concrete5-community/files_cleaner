@@ -10,7 +10,7 @@ class EmptyFoldersClearFilesProvider extends ClearFilesProvider {
 	* @abstract
 	*/
 	protected function getAbsFolders() {
-		throw new Exception(sprintf(t('Method \'%1$s\' not implemented in class \'%2$s\''), __FUNCTION__, get_class($this)));
+		throw new Exception(t('Method \'%1$s\' not implemented in class \'%2$s\'', __FUNCTION__, get_class($this)));
 	}
 
 	/** Retrieves the shown name of a specific absolute folder.
